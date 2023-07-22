@@ -1,0 +1,50 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@600;800&family=Paytone+One&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+:root {
+  --black: #131313;
+  --off-black: #1d1d1d;
+  --gray: rgb(151, 151, 151);
+  --white: #d4d4d4;
+  --lamona-bg: #fffef1;
+  --lamona-fg: #ff7f11;
+  --css-blue: #287feb;
+  --tomasinoweb-blue: #151f29;
+  --tomasinoweb-yellow: #f7a81e;
+}
+
+body {
+  background-color: var(--black);
+  color: var(--white);
+  font-family: "Poppins", sans-serif;
+}
+
+h1 {
+  font-weight: 600;
+}
+
+h2 {
+  font-weight: 500;
+}
+
+ul {
+  list-style-position: inside;
+
+  li {
+    line-height: 1.2em;
+    margin-bottom: 2px;
+
+    ul {
+      margin-left: 30px;
+    }
+  }
+}
+
+a {
+  color: unset;
+}
