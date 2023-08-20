@@ -35,9 +35,14 @@ function PopoutHoverable(props: { children: ReactNode; active: boolean; setActiv
         </div>
       </div>
 
-      <div className={styles.popout + " " + (props.active ? styles.active_popout : undefined)}>{props.children}</div>
-
-      <div className={styles.closer} onClick={() => props.setActive(false)}></div>
+      <div
+        className={
+          styles.popout + " " + (props.active ? styles.active_popout : undefined) + " " + styles.removeOnMobile
+        }
+      >
+        {props.children}
+      </div>
+      <div className={styles.closer + " " + styles.removeOnMobile} onClick={() => props.setActive(false)}></div>
     </>
   );
 }
@@ -51,25 +56,30 @@ export default function () {
         <header className={styles.header}>
           <Image src={Profile} alt="my profile picture" className={styles.img} />
           <div className={styles.right_side}>
-            <h1 className={styles.heading}>Lance Owen Gulinao</h1>
-            <h2 className={styles.subheading}>
-              Fullstack Web Developer, <Writer />
-            </h2>
-          </div>
+            <div className={styles.right_side_inner}>
+              <h1 className={styles.heading}>Lance Owen Gulinao</h1>
+              <h2 className={styles.subheading}>
+                Fullstack Web Developer
+                <span className={styles.writer}>
+                  , <Writer />
+                </span>
+              </h2>
+            </div>
 
-          <div className={styles.icons}>
-            <a href="https://github.com/scinscinscin" target="_blank">
-              <FontAwesomeIcon icon={faGithubSquare} size="2xl" />
-            </a>
+            <div className={styles.icons}>
+              <a href="https://github.com/scinscinscin" target="_blank">
+                <FontAwesomeIcon icon={faGithubSquare} size="2xl" />
+              </a>
 
-            <a href="https://www.linkedin.com/in/lance-owen-gulinao-028644258/" target="_blank">
-              <FontAwesomeIcon icon={faLinkedin} size="2xl" />
-            </a>
+              <a href="https://www.linkedin.com/in/lance-owen-gulinao-028644258/" target="_blank">
+                <FontAwesomeIcon icon={faLinkedin} size="2xl" />
+              </a>
+            </div>
           </div>
         </header>
 
         {/** HIBIKASE: https://www.youtube.com/watch?v=TkroHwQYpFE */}
-        <section className={styles.section}>
+        <section className={styles.section + " " + styles.about}>
           <h1>About</h1>
 
           <div className={styles.item}>
@@ -94,7 +104,7 @@ export default function () {
           <div className={styles.item}>
             <div className={styles.split}>
               <h1>University of Santo Tomas</h1>
-              <h1>2022 - Present</h1>
+              <h1 className={styles.removeOnMobile}>2022 - Present</h1>
             </div>
             <h2>BS Computer Science</h2>
             <ul>
@@ -109,7 +119,7 @@ export default function () {
           <div className={styles.item}>
             <div className={styles.split}>
               <h1>De La Salle University - Integrated School</h1>
-              <h1>2020 - 2022</h1>
+              <h1 className={styles.removeOnMobile}>2020 - 2022</h1>
             </div>
             <h2>Senior High School - STEM</h2>
             <ul>
@@ -173,6 +183,7 @@ export default function () {
               <div className={styles.push_everything_bottom}></div>
               <div>
                 <h2
+                  className={styles.removeOnMobile}
                   style={{ display: "flex", alignItems: "center", gap: "5px", cursor: "pointer" }}
                   onClick={() => setMainWebsitePopoutActive(true)}
                 >
