@@ -5,6 +5,7 @@ import CSSFeatured from "../../public/css_featured.png";
 import MWRFeatured from "../../public/main_website_featured.png";
 import LandingImage from "../../public/landing_featured.png";
 import BylinePageImage from "../../public/bylines_featured.png";
+import R101_2023Featured from "../../public/r101_2023.png";
 import SectionsPageImage from "../../public/sections_featured.png";
 import FeaturedArticlePageImage from "../../public/featured_page.png";
 import RedstoneComputer from "../../public/redstone_computer.png";
@@ -374,11 +375,7 @@ export default function () {
           <div className={styles.item + " " + styles.divide}>
             <div className={styles.left}>
               <h1 className={styles.css_heading}>
-                <a
-                  href="https://ust-computer-science-society-github-io.vercel.app/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
+                <a href="https://ust-css.com/" target="_blank" rel="noopener noreferrer">
                   UST Computer Science Society Website
                 </a>
               </h1>
@@ -387,6 +384,21 @@ export default function () {
 
             <div className={styles.right + " " + styles.zoomer}>
               <Image src={CSSFeatured} alt="CSS Website Featured image" />
+            </div>
+          </div>
+
+          <div className={styles.item + " " + styles.divide}>
+            <div className={styles.left}>
+              <h1 className={styles.tw_heading}>
+                <a href="https://join.tomasinoweb.org/" target="_blank" rel="noopener noreferrer">
+                  join.tomasinoweb.org
+                </a>
+              </h1>
+              <h2>An organization recruitment / application website for TomasinoWeb</h2>
+            </div>
+
+            <div className={styles.right + " " + styles.zoomer}>
+              <Image src={R101_2023Featured} alt="join.tomasinoweb.org Featured image" />
             </div>
           </div>
         </section>
