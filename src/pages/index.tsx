@@ -113,6 +113,7 @@ export default function () {
                 Winner of CodeSprint 2023, a competitive programming competition hosted by the UST Computer Science
                 Society
               </li>
+              <li>1st runner up in DLSU Hackercup 2023, a hackathon hosted by the La Salle Computer Society</li>
               <li>Consistent dean's lister with{" <"}1.50 running GWA</li>
             </ul>
           </div>
