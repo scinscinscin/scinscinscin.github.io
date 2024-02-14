@@ -403,7 +403,7 @@ export default function () {
           <Item
             alt="CSS Website Featured Image"
             description="A website that showcases information about the UST CS department's Mother Organization."
-            href="https://ustcss.com"
+            href="https://ust-css.com"
             img={CSSFeatured}
             title="UST Computer Science Society Website"
             titleStyle={styles.css_heading}
