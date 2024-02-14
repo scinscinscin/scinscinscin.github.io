@@ -4,6 +4,7 @@ import LamonaFeatured from "../../public/lamona_featured.png";
 import CSSFeatured from "../../public/css_featured.png";
 import MWRFeatured from "../../public/main_website_featured.png";
 import LandingImage from "../../public/landing_featured.png";
+import RightClickFeatured from "../../public/rightclick_featured.png";
 import BylinePageImage from "../../public/bylines_featured.png";
 import R101_2023Featured from "../../public/r101_2023.png";
 import SectionsPageImage from "../../public/sections_featured.png";
@@ -12,16 +13,16 @@ import RedstoneComputer from "../../public/redstone_computer.png";
 import ScintaxFeatured from "../../public/scintax_featured.png";
 import ScinSSFeatured from "../../public/scinss_featured.png";
 import MastheadFeatured from "../../public/masthead_featured.png";
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithubSquare, faLinkedin } from "@fortawesome/free-brands-svg-icons";
 import { ReactNode, useState } from "react";
-import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
+import { faArrowUpRightFromSquare, faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import { Typewriter } from "react-simple-typewriter";
 
 const Writer = () => (
   <span style={{ color: "var(--gray)" }}>
-    <Typewriter words={["sysadmin", "student"]} loop />
+    <Typewriter words={["sysadmin", "student", "programmer"]} loop />
   </span>
 );
 
@@ -45,6 +46,39 @@ function PopoutHoverable(props: { children: ReactNode; active: boolean; setActiv
       </div>
       <div className={styles.closer + " " + styles.removeOnMobile} onClick={() => props.setActive(false)}></div>
     </>
+  );
+}
+
+function Item(props: {
+  href: string;
+  img: StaticImageData;
+  alt: string;
+  title: string;
+  description: string;
+  titleStyle: string;
+}) {
+  return (
+    <div className={styles.item + " " + styles.divide}>
+      <div className={styles.left}>
+        <h1 className={props.titleStyle}>
+          <a href={props.href} target="_blank" rel="noopener noreferrer">
+            {props.title}
+          </a>
+        </h1>
+
+        <h2>{props.description}</h2>
+      </div>
+
+      <div className={styles.right + " " + styles.zoomer + " " + styles.relative}>
+        <Image src={props.img} alt={props.alt} />
+        <a href={props.href} target="_blank" rel="noopener noreferrer">
+          <div className={styles.wrapper}>
+            <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
+            <p>Visit</p>
+          </div>
+        </a>
+      </div>
+    </div>
   );
 }
 
@@ -166,7 +200,7 @@ export default function () {
           </div>
         </section>
 
-        <section className={styles.section + " " + styles.sectionWithImages}>
+        <section className={styles.section + " " + styles.sectionWithImages + " " + styles.websites}>
           <h1>Websites I've worked on</h1>
 
           <div className={styles.item + " " + styles.divide}>
@@ -357,51 +391,41 @@ export default function () {
             </PopoutHoverable>
           </div>
 
-          <div className={styles.item + " " + styles.divide}>
-            <div className={styles.left}>
-              <h1 className={styles.lamona_heading}>
-                <a href="https://lamona.lol" target="_blank" rel="noopener noreferrer">
-                  lamona
-                </a>
-              </h1>
+          <Item
+            alt="Lamona featured image"
+            description="A food and drink directory for Thomasians featuring over 180 establishments."
+            href="https://lamona.lol"
+            img={LamonaFeatured}
+            title="lamona"
+            titleStyle={styles.lamona_heading}
+          />
 
-              <h2>A food and drink directory for Thomasians featuring over 180 establishments.</h2>
-            </div>
+          <Item
+            alt="CSS Website Featured Image"
+            description="A website that showcases information about the UST CS department's Mother Organization."
+            href="https://ustcss.com"
+            img={CSSFeatured}
+            title="UST Computer Science Society Website"
+            titleStyle={styles.css_heading}
+          />
 
-            <div className={styles.right + " " + styles.zoomer}>
-              <Image src={LamonaFeatured} alt="Lamona featured image" />
-            </div>
-          </div>
+          <Item
+            alt="join.tomasinoweb.org Featured Image"
+            description="An organization recruitment / application website for TomasinoWeb"
+            href="https://join.tomasinoweb.org"
+            img={R101_2023Featured}
+            title="join.tomasinoweb.org"
+            titleStyle={styles.tw_heading}
+          />
 
-          <div className={styles.item + " " + styles.divide}>
-            <div className={styles.left}>
-              <h1 className={styles.css_heading}>
-                <a href="https://ust-css.com/" target="_blank" rel="noopener noreferrer">
-                  UST Computer Science Society Website
-                </a>
-              </h1>
-              <h2>A website that showcases information about the UST CS department's Mother Organization</h2>
-            </div>
-
-            <div className={styles.right + " " + styles.zoomer}>
-              <Image src={CSSFeatured} alt="CSS Website Featured image" />
-            </div>
-          </div>
-
-          <div className={styles.item + " " + styles.divide}>
-            <div className={styles.left}>
-              <h1 className={styles.tw_heading}>
-                <a href="https://join.tomasinoweb.org/" target="_blank" rel="noopener noreferrer">
-                  join.tomasinoweb.org
-                </a>
-              </h1>
-              <h2>An organization recruitment / application website for TomasinoWeb</h2>
-            </div>
-
-            <div className={styles.right + " " + styles.zoomer}>
-              <Image src={R101_2023Featured} alt="join.tomasinoweb.org Featured image" />
-            </div>
-          </div>
+          <Item
+            alt="rightclick.tomasinoweb.org Featured Image"
+            description="The UST student elections coverage website of TomasinoWeb, showcasing the candidates of every student council, and their platforms."
+            href="https://rightclick.tomasinoweb.org"
+            img={RightClickFeatured}
+            title="rightclick.tomasinoweb.org"
+            titleStyle={styles.tw_heading}
+          />
         </section>
 
         <section className={styles.section + " " + styles.sectionWithImages}>
