@@ -13,12 +13,15 @@ import RedstoneComputer from "../../public/redstone_computer.png";
 import ScintaxFeatured from "../../public/scintax_featured.png";
 import ScinSSFeatured from "../../public/scinss_featured.png";
 import MastheadFeatured from "../../public/masthead_featured.png";
+import StandWithFeatured from "../../public/standwith_featured.png";
+import LiRedditFeatured from "../../public/lireddit_featured.png";
 import Image, { StaticImageData } from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithubSquare, faLinkedin } from "@fortawesome/free-brands-svg-icons";
-import { ReactNode, useState } from "react";
+import React, { ReactNode, useState } from "react";
 import { faArrowUpRightFromSquare, faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import { Typewriter } from "react-simple-typewriter";
+import { useRouter } from "next/router";
 
 const Writer = () => (
   <span style={{ color: "var(--gray)" }}>
@@ -49,34 +52,40 @@ function PopoutHoverable(props: { children: ReactNode; active: boolean; setActiv
   );
 }
 
-function Item(props: {
-  href: string;
+function Project(props: {
+  href?: string;
   img: StaticImageData;
   alt: string;
   title: string;
   description: string;
-  titleStyle: string;
+  titleStyle?: string;
 }) {
   return (
     <div className={styles.item + " " + styles.divide}>
       <div className={styles.left}>
         <h1 className={props.titleStyle}>
-          <a href={props.href} target="_blank" rel="noopener noreferrer">
-            {props.title}
-          </a>
+          {props.href ? (
+            <a href={props.href} target="_blank" rel="noopener noreferrer">
+              {props.title}
+            </a>
+          ) : (
+            <>{props.title}</>
+          )}
         </h1>
 
         <h2>{props.description}</h2>
       </div>
 
-      <div className={styles.right + " " + styles.zoomer + " " + styles.relative}>
+      <div className={styles.right + " " + styles.zoomer + " " + (props.href ? styles.relative : "")}>
         <Image src={props.img} alt={props.alt} />
-        <a href={props.href} target="_blank" rel="noopener noreferrer">
-          <div className={styles.wrapper}>
-            <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
-            <p>Visit</p>
-          </div>
-        </a>
+        {props.href && (
+          <a href={props.href} target="_blank" rel="noopener noreferrer">
+            <div className={styles.wrapper}>
+              <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
+              <p>Visit</p>
+            </div>
+          </a>
+        )}
       </div>
     </div>
   );
@@ -84,6 +93,7 @@ function Item(props: {
 
 export default function () {
   const [mainWebsitePopoutActive, setMainWebsitePopoutActive] = useState(false);
+  const router = useRouter();
 
   return (
     <div className={styles.page}>
@@ -119,9 +129,8 @@ export default function () {
 
           <div className={styles.item}>
             <p>
-              👋 I'm Lance, a second year computer science student studying in UST. I develop websites that provide
-              value to other people. I constantly refine my skills and workflow by experimenting with new tech and
-              tools.
+              👋 I'm Lance, a third year computer science student studying in UST. I develop websites that provide value
+              to other people. I constantly refine my skills and workflow by experimenting with new tech and tools.
             </p>
           </div>
 
@@ -149,6 +158,7 @@ export default function () {
               </li>
               <li>1st runner up in DLSU Hackercup 2023, a hackathon hosted by the La Salle Computer Society</li>
               <li>Consistent dean's lister with{" <"}1.50 running GWA</li>
+              <li>Top 4 for 1st semester of A.Y. 2023 - 2024</li>
             </ul>
           </div>
 
@@ -187,7 +197,7 @@ export default function () {
           <h1>Experience</h1>
 
           <div className={styles.item}>
-            <h1>Lead Backend Developer</h1>
+            <h1>Assistant Chief Technology Officer</h1>
             <h2>TomasinoWeb</h2>
 
             <ul>
@@ -391,7 +401,7 @@ export default function () {
             </PopoutHoverable>
           </div>
 
-          <Item
+          <Project
             alt="Lamona featured image"
             description="A food and drink directory for Thomasians featuring over 180 establishments."
             href="https://lamona.lol"
@@ -400,7 +410,7 @@ export default function () {
             titleStyle={styles.lamona_heading}
           />
 
-          <Item
+          <Project
             alt="CSS Website Featured Image"
             description="A website that showcases information about the UST CS department's Mother Organization."
             href="https://ust-css.com"
@@ -409,7 +419,7 @@ export default function () {
             titleStyle={styles.css_heading}
           />
 
-          <Item
+          <Project
             alt="join.tomasinoweb.org Featured Image"
             description="An organization recruitment / application website for TomasinoWeb"
             href="https://join.tomasinoweb.org"
@@ -418,7 +428,7 @@ export default function () {
             titleStyle={styles.tw_heading}
           />
 
-          <Item
+          <Project
             alt="rightclick.tomasinoweb.org Featured Image"
             description="The UST student elections coverage website of TomasinoWeb, showcasing the candidates of every student council, and their platforms."
             href="https://rightclick.tomasinoweb.org"
@@ -426,98 +436,52 @@ export default function () {
             title="rightclick.tomasinoweb.org"
             titleStyle={styles.tw_heading}
           />
+
+          {router.query.party != null && (
+            <Project
+              alt="standwithtomasinoweb.com Featured image"
+              description="The protest website for TomasinoWeb, showing the support of nearly 1000 Thomasian alumnis against campus repression."
+              href="https://standwithtomasinoweb.com/alumni"
+              img={StandWithFeatured}
+              title="standwithtomasinoweb.com"
+              titleStyle={styles.tw_heading}
+            />
+          )}
         </section>
 
         <section className={styles.section + " " + styles.sectionWithImages}>
-          <h1>Non-webdev personal projects</h1>
+          <h1>Sideprojects</h1>
 
-          <div className={styles.item + " " + styles.divide}>
-            <div className={styles.left}>
-              <h1>8-bit Minecraft Redstone Computer</h1>
-              <h2>
-                A compiler toolchain written in C and Python for compiling a custom programming language to a Minecraft
-                computer's instruction set.
-              </h2>
-            </div>
+          <Project
+            title="8-bit Minecraft Redstone Computer"
+            description="A compiler toolchain written in C and Python for compiling a custom programming language to a Minecraft computer's instruction set."
+            alt="8-bit Redstone Computer"
+            img={RedstoneComputer}
+          />
 
-            <div className={styles.right + " " + styles.zoomer}>
-              <Image src={RedstoneComputer} alt="8-bit Redstone computer" />
-            </div>
-          </div>
+          <Project
+            title="Scintax Programming Language"
+            href="https://github.com/scinscinscin/scintax"
+            description={`A treewalk interpreted general purpose programming langauge, inspired by JavaScript, written in C#. \n\nIt comes with its own REPL and "IDE" with semantic highlighting.`}
+            alt="Scintax example"
+            img={ScintaxFeatured}
+          />
 
-          <div className={styles.item + " " + styles.divide}>
-            <div className={styles.left}>
-              <h1>
-                <a href="https://github.com/scinscinscin/scintax" target="_blank" rel="noopener noreferrer">
-                  Scintax programming language
-                </a>
-              </h1>
+          <Project
+            title="scinss css preprocessor"
+            href="https://github.com/scinscinscin/scinss"
+            description="A rudimentary stylesheet language, allowing users to write shorter, more succinct CSS."
+            alt="scinss featured image"
+            img={ScinSSFeatured}
+          />
 
-              <h2>
-                A treewalk interpreted general purpose programming langauge, inspired by JavaScript, written in C#.
-              </h2>
-              <h2>It comes with its own REPL and "IDE" with semantic highlighting.</h2>
-            </div>
-
-            <div className={styles.right + " " + styles.zoomer}>
-              <Image src={ScintaxFeatured} alt="8-bit Redstone computer" />
-            </div>
-          </div>
-
-          <div className={styles.item + " " + styles.divide}>
-            <div className={styles.left}>
-              <h1>
-                <a href="https://github.com/scinscinscin/scinss" target="_blank" rel="noopener noreferrer">
-                  scinss css preprocessor
-                </a>
-              </h1>
-
-              <h2>A rudimentary stylesheet language, allowing users to write shorter, more succinct CSS.</h2>
-            </div>
-
-            <div className={styles.right + " " + styles.zoomer}>
-              <Image src={ScinSSFeatured} alt="scinss featured image" />
-            </div>
-          </div>
-        </section>
-
-        <section className={styles.section}>
-          <h1>Open source</h1>
-
-          <div className={styles.item}>
-            <h1>
-              <a href="https://www.npmjs.com/package/@scinorandex/rpscin" target="_blank" rel="noopener noreferrer">
-                @scinorandex/rpscin
-              </a>
-            </h1>
-            <h2>An experimental library for building fullstack typesafe REST APIs with TypeScript</h2>
-
-            <ul>
-              <li>Improves developer experience by reducing type-related code errors</li>
-              <li>
-                Used in production by{" "}
-                <a href="https://tomasinoweb.org" target="_blank" rel="noopener noreferrer">
-                  TomasinoWeb.org
-                </a>
-              </li>
-              <li>Generates a typesafe client-side library based on server-side code automatically</li>
-              <li>Simplifies common tasks such as multipart form uploads and authentication</li>
-              <li>Provides middleware type information to API resolvers using TypeScript generics</li>
-            </ul>
-          </div>
-
-          <div className={styles.item}>
-            <h1>
-              <a href="https://github.com/scinscinscin/scider" target="_blank" rel="noopener noreferrer">
-                @scinorandex/scider
-              </a>
-            </h1>
-            <h2>A volatile in-memory data store for JavaScript applications</h2>
-
-            <ul>
-              <li>Fully typed with TypeScript and tested with Jest.</li>
-            </ul>
-          </div>
+          <Project
+            title="LiReddit"
+            href="https://github.com/scinscinscin/lireddit"
+            description="A basic Reddit clone, inspired by Ben Awad's GraphQL tutorial series."
+            alt="scinss featured image"
+            img={LiRedditFeatured}
+          />
         </section>
 
         <section className={styles.section + " " + styles.skills}>
@@ -549,7 +513,98 @@ export default function () {
             </div>
           </div>
         </section>
+
+        <section className={styles.section}>
+          <h1>Open source</h1>
+
+          <OpenSourceItem
+            title="@scinorandex/rpscin"
+            titleLink="https://github.com/scinscinscin/rpscin"
+            description="An experimental library for building fullstack typesafe REST and WebSocket APIs with TypeScript"
+            bullets={[
+              <>Improves developer experience by reducing type-related code errors.</>,
+              <>
+                Used in production by{" "}
+                <a href="https://tomasinoweb.org" target="_blank" rel="noopener noreferrer">
+                  TomasinoWeb.org
+                </a>
+                .
+              </>,
+              <>Generates a typesafe client-side RPC library from server-side code automatically.</>,
+              <>Allows developers to easily create realtime apps with typesafe event-based WebSocket connections.</>,
+            ]}
+          />
+
+          <OpenSourceItem
+            title="@scinorandex/erpc"
+            titleLink="https://github.com/scinscinscin/erpc"
+            description="A lightweight express wrapper offering a typesafe middleware experience"
+            bullets={[
+              <>
+                Increases quality-of-life by automatically loading <code>express.json()</code>,{" "}
+                <code>cookie-parser</code>, <code>morgan</code>, <code>cors</code>, and handling errors and rejected
+                promises.
+              </>,
+              <>Provides middleware type information to API resolvers using TypeScript generics.</>,
+              <>Simplifies common tasks such as multipart form uploads and authentication.</>,
+              <>First class WebSocket support, treating WebSockets as if it was another HTTP method.</>,
+            ]}
+          />
+
+          <OpenSourceItem
+            title="@scinorandex/layout"
+            titleLink="https://github.com/scinscinscin/layout"
+            description="A tiny library for creating typesafe layouts with Next.js Pages Router"
+            bullets={[
+              <>Fully customizable, guarantees the types of different data flows between layouts and pages.</>,
+              <>Handles the automatic caching and revalidation of page props.</>,
+            ]}
+          />
+
+          <OpenSourceItem
+            title="@scinorandex/yoko"
+            titleLink="https://github.com/scinscinscin/yoko"
+            description="A library for defining GraphQL resolvers and schemas using the Zod validation library"
+            bullets={[
+              <>Uses a declarative, code-first approach for defining resolvers.</>,
+              <>Usable with any API framework and can even be queried directly without an API.</>,
+            ]}
+          />
+
+          <OpenSourceItem
+            title="@scinorandex/scider"
+            titleLink="https://github.com/scinscinscin/scider"
+            description="A volatile in-memory data store for JavaScript applications"
+            bullets={[<>Fully typed with TypeScript and tested with Jest.</>]}
+          />
+        </section>
       </div>
+    </div>
+  );
+}
+
+interface OpenSourceItemProps {
+  title: string;
+  titleLink: string;
+  description: string;
+  bullets: React.ReactNode[];
+}
+
+function OpenSourceItem(props: OpenSourceItemProps) {
+  return (
+    <div className={styles.item}>
+      <h1>
+        <a href={props.titleLink} target="_blank" rel="noopener noreferrer">
+          {props.title}
+        </a>
+      </h1>
+      <h2>{props.description}</h2>
+
+      <ul>
+        {props.bullets.map((bullet, i) => (
+          <li key={i}>{bullet}</li>
+        ))}
+      </ul>
     </div>
   );
 }

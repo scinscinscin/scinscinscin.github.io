@@ -130,6 +130,9 @@
 
         ul li {
           font-size: 16px;
+          code {
+            font-size: 17px;
+          }
         }
 
         .popout {
@@ -288,6 +291,10 @@
 
       .push_everything_bottom {
         flex: 1;
+      }
+
+      > h2 {
+        white-space: pre-wrap;
       }
     }
 
