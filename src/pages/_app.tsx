@@ -20,6 +20,10 @@ export default function App({ Component, pageProps }: AppProps) {
           title: "Lance Owen Gulinao's Portfolio",
           images: [{ url: "https://scinscinscin.github.io/meta.png" }],
         }}
+        twitter={{
+          cardType: "summary_large_image",
+          site: "https://scinscinscin.github.io",
+        }}
       />
 
       <Component {...pageProps} />
