@@ -48,3 +48,20 @@ ul {
 a {
   color: unset;
 }
+
+@font-face {
+  font-family: "Clash Display";
+  src: url("/fonts/ClashDisplay-Variable.ttf");
+}
+
+@font-face {
+  font-family: "Clash Grotesk";
+  src: url("/fonts/ClashGrotesk-Variable.ttf");
+}
+
+@font-face {
+  font-family: "Gravity Bold";
+  font-weight: normal;
+  font-style: normal;
+  src: url("/fonts/Gravity-Bold.otf");
+}

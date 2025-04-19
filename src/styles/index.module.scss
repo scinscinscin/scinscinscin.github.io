@@ -126,6 +126,13 @@
         h1 {
           font-size: 18px;
           font-weight: 500;
+
+          a {
+            text-decoration: none;
+          }
+          a:hover {
+            text-decoration: underline;
+          }
         }
 
         ul li {
@@ -356,6 +363,16 @@
 .lamona_heading {
   font-family: "Paytone One", sans-serif;
   color: var(--lamona-fg);
+}
+
+.thomscore_heading {
+  font-family: "Clash Display", sans-serif;
+  font-weight: bold !important;
+  color: var(--tomasinoweb-yellow);
+}
+
+.draft143_heading {
+  font-family: "Gravity Bold", sans-serif;
 }
 
 .css_heading {

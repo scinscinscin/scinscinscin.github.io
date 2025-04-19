@@ -1,5 +1,6 @@
 import styles from "../styles/index.module.scss";
 import Profile from "../../public/profile.png";
+import Draft143Featured from "../../public/draft143_featured.png";
 import LamonaFeatured from "../../public/lamona_featured.png";
 import CSSFeatured from "../../public/css_featured.png";
 import MWRFeatured from "../../public/main_website_featured.png";
@@ -8,6 +9,7 @@ import RightClickFeatured from "../../public/rightclick_featured.png";
 import BylinePageImage from "../../public/bylines_featured.png";
 import R101_2023Featured from "../../public/r101_2023.png";
 import SectionsPageImage from "../../public/sections_featured.png";
+import SaveSierraMadreFeatured from "../../public/savesierramadre_featured.png";
 import FeaturedArticlePageImage from "../../public/featured_page.png";
 import RedstoneComputer from "../../public/redstone_computer.png";
 import ScintaxFeatured from "../../public/scintax_featured.png";
@@ -15,6 +17,9 @@ import ScinSSFeatured from "../../public/scinss_featured.png";
 import MastheadFeatured from "../../public/masthead_featured.png";
 import StandWithFeatured from "../../public/standwith_featured.png";
 import LiRedditFeatured from "../../public/lireddit_featured.png";
+import ThomScoreFeatured from "../../public/thomscore_featured.png";
+import FakerFeatured from "../../public/faker.png";
+import R101_2024Featured from "../../public/r101_2024.png";
 import Image, { StaticImageData } from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithubSquare, faLinkedin } from "@fortawesome/free-brands-svg-icons";
@@ -22,12 +27,26 @@ import React, { ReactNode, useState } from "react";
 import { faArrowUpRightFromSquare, faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import { Typewriter } from "react-simple-typewriter";
 import { useRouter } from "next/router";
+import { motion } from "framer-motion";
 
 const Writer = () => (
   <span style={{ color: "var(--gray)" }}>
     <Typewriter words={["sysadmin", "student", "programmer"]} loop />
   </span>
 );
+
+const EnterWhenVisible = ({ children }: { children: ReactNode }) => {
+  return (
+    <motion.div
+      initial={{ x: "-100%", opacity: 0 }}
+      exit={{ x: "-100%", opacity: 0 }}
+      whileInView={{ x: 0, opacity: 1 }}
+      transition={{ duration: 0.5, delay: 0.25 }}
+    >
+      {children}
+    </motion.div>
+  );
+};
 
 function PopoutHoverable(props: { children: ReactNode; active: boolean; setActive: (b: boolean) => void }) {
   return (
@@ -73,7 +92,7 @@ function Project(props: {
           )}
         </h1>
 
-        <h2>{props.description}</h2>
+        <h2 style={{ whiteSpace: "pre-wrap" }}>{props.description}</h2>
       </div>
 
       <div className={styles.right + " " + styles.zoomer + " " + (props.href ? styles.relative : "")}>
@@ -123,7 +142,6 @@ export default function () {
           </div>
         </header>
 
-        {/** HIBIKASE: https://www.youtube.com/watch?v=TkroHwQYpFE */}
         <section className={styles.section + " " + styles.about}>
           <h1>About</h1>
 
@@ -411,20 +429,29 @@ export default function () {
           />
 
           <Project
-            alt="CSS Website Featured Image"
-            description="A website that showcases information about the UST CS department's Mother Organization."
-            href="https://ust-css.com"
-            img={CSSFeatured}
-            title="UST Computer Science Society Website"
-            titleStyle={styles.css_heading}
+            alt="Draft 143 featured image"
+            description="A place to anonymously post your sentimental stories."
+            href="https://draft143.com"
+            img={Draft143Featured}
+            title="[Draft 143]"
+            titleStyle={styles.draft143_heading}
           />
 
           <Project
             alt="join.tomasinoweb.org Featured Image"
-            description="An organization recruitment / application website for TomasinoWeb"
-            href="https://join.tomasinoweb.org"
+            description="An organization recruitment website for TomasinoWeb's 2023 R101 season."
+            href="https://r101-website-git-py16-tw-webtechs-projects.vercel.app/"
             img={R101_2023Featured}
-            title="join.tomasinoweb.org"
+            title="join.tomasinoweb.org (2023)"
+            titleStyle={styles.tw_heading}
+          />
+
+          <Project
+            alt="join.tomasinoweb.org Featured Image"
+            description="An organization recruitment website for TomasinoWeb's 2024 R101 season."
+            href="https://join.tomasinoweb.org"
+            img={R101_2024Featured}
+            title="join.tomasinoweb.org (2024)"
             titleStyle={styles.tw_heading}
           />
 
@@ -437,6 +464,17 @@ export default function () {
             titleStyle={styles.tw_heading}
           />
 
+          <Project
+            alt="ThomScore Featured Image"
+            description={
+              "The pioneering and exclusive sports journalism platform of the University of Santo Tomas's competing athletes.\n\nNominated in the 2024 UST University Student Awards."
+            }
+            href="https:/uaap.tomasinoweb.org"
+            img={ThomScoreFeatured}
+            title="ThomScore"
+            titleStyle={styles.thomscore_heading}
+          />
+
           {router.query.party != null && (
             <Project
               alt="standwithtomasinoweb.com Featured image"
@@ -447,6 +485,26 @@ export default function () {
               titleStyle={styles.tw_heading}
             />
           )}
+
+          <Project
+            alt="CSS Website Featured Image"
+            description="A website that showcases information about the UST CS department's mother organization."
+            href="https://ust-css.com"
+            img={CSSFeatured}
+            title="UST Computer Science Society Website"
+            titleStyle={styles.css_heading}
+          />
+
+          <Project
+            alt="Save Sierra Madre Featured Image"
+            description={
+              "An avocacy website for the Save Sierra Madre movement.\n\nFeatured by the official University of Santo Tomas Facebook Page and nominated in the 2024 UST University Student Awards."
+            }
+            href="https://www.savesierramadre.com/"
+            img={SaveSierraMadreFeatured}
+            title="Save Sierra Madre"
+            titleStyle={styles.tw_heading}
+          />
         </section>
 
         <section className={styles.section + " " + styles.sectionWithImages}>
@@ -476,11 +534,10 @@ export default function () {
           />
 
           <Project
-            title="LiReddit"
-            href="https://github.com/scinscinscin/lireddit"
-            description="A basic Reddit clone, inspired by Ben Awad's GraphQL tutorial series."
-            alt="scinss featured image"
-            img={LiRedditFeatured}
+            title="Faker"
+            description="A lightweight alternative to Google and Vercel analytics."
+            alt="faker featured image"
+            img={FakerFeatured}
           />
         </section>
 
